@@ -10,8 +10,8 @@ To address this problem, we propose a Laptop Rental Management System that allow
 The Laptop Rental Management System will be developed in the C programming language. The project will follow a modular structure, dividing the workload into four distinct modules to be assigned to a team of four members. The system will include features such as student registration, laptop inventory management, rental transactions, search functionality, and user authentication.
 
 **Features:**
-Student Registration: Register students with their details.
-Laptop Inventory Management: Maintain a record of available laptops.
-Rental Transactions: Manage the rental process, including booking and returns.
-Authentication: Ensure secure access for admins and students.
-Search Functionality: Allow users to search for laptops and student records
+Student Registration: Register students with their details.<br>
+Laptop Inventory Management: Maintain a record of available laptops.<br>
+Rental Transactions: Manage the rental process, including booking and returns.<br>
+Authentication: Ensure secure access for admins and students.<br>
+Search Functionality: Allow users to search for laptops and student records<br>
