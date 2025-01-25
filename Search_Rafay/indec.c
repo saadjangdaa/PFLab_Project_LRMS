@@ -1,25 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct {
-    char studentID[20];
-    char name[50];
-    char contact[20];
-} Student;
-
-typedef struct {
-    char laptopID[20];
-    char brand[50];
-    char specs[100];
-    int isAvailable;
-} Laptop;
-
 int login();
 void searchStudent();
 void searchLaptop();
 
-int main() {
+int main()
+{
     int choice;
+
     if (!login()) {
         printf("Login failed. Exiting program.\n");
         return 0;
@@ -41,95 +30,140 @@ int main() {
                 searchLaptop();
                 break;
             case 3:
-                printf("Exiting system. Goodbye!\n");
+                printf("Exit. Goodbye!\n");
                 return 0;
             default:
-                printf("Invalid choice. Please try again.\n");
+                printf("Invalid choice.\n");
         }
     }
 
     return 0;
 }
 
-int login() {
-    char username[20], password[20];
-    char adminUsername[] = "admin";
-    char adminPassword[] = "1234";
+#include <stdio.h>
+#include <string.h>
 
-    printf("\n--- Login ---\n");
+int login()
+{
+    char line[100];
+    char inputUsername[50], inputPassword[50];
+    int loginSuccess = 0;
+
     printf("Enter username: ");
-    scanf("%s", username);
+    scanf("%s", inputUsername);
     printf("Enter password: ");
-    scanf("%s", password);
+    scanf("%s", inputPassword);
 
-    if (strcmp(username, adminUsername) == 0 && strcmp(password, adminPassword) == 0) {
-        printf("Login successful!\n");
-        return 1;
-    } else {
-        printf("Invalid credentials.\n");
+    FILE *ftpr = fopen("user.txt", "r");
+
+    if (ftpr == NULL)
+    {
+        printf("ERROR: Cannot open file.\n");
         return 0;
     }
+
+    printf("\n--- Reading File ---\n");
+
+    // Read each line
+    while (fgets(line, sizeof(line), ftpr) != NULL)
+    {
+        char fileUsername[50], filePassword[50];
+
+        if (sscanf(line, "Username: %s Password: %s", fileUsername, filePassword) == 2)
+        {
+            printf("Parsed Username: %s, Parsed Password: %s\n", fileUsername, filePassword);
+
+            if (strcmp(inputUsername, fileUsername) == 0 && strcmp(inputPassword, filePassword) == 0)
+            {
+                printf("Login successful!\n");
+                loginSuccess = 1;
+                break;
+            }
+        }
+    }
+
+    if (!loginSuccess)
+    {
+        printf("Invalid username or password.\n");
+    }
+
+    fclose(ftpr);
+    return 0;
 }
 
-void searchStudent() {
-    FILE *file = fopen("students.txt", "r");
-    if (file == NULL) {
-        printf("Error: Could not open student records.\n");
+void searchLaptop()
+{
+    char line[100];
+    char searchQuery[50];
+    int found = 0;
+
+    // Input search
+    printf("Enter laptop name or model to search: ");
+    scanf("%s", searchQuery);
+
+    FILE *ftpr = fopen("laptops.txt", "r");
+
+    if (ftpr == NULL)
+    {
+        printf("ERROR: Cannot open file.\n");
         return;
     }
 
-    char searchID[20];
-    Student student;
-    int found = 0;
+    printf("\n--- Searching for Laptop ---\n");
 
-    printf("\n--- Search Student ---\n");
-    printf("Enter Student ID to search: ");
-    scanf("%s", searchID);
-
-    while (fscanf(file, "%s %s %s", student.studentID, student.name, student.contact) != EOF) {
-        if (strcmp(student.studentID, searchID) == 0) {
-            printf("\nStudent Found:\n");
-            printf("ID: %s\nName: %s\nContact: %s\n", student.studentID, student.name, student.contact);
+    // Read each line
+    while (fgets(line, sizeof(line), ftpr) != NULL)
+    {
+        if (strstr(line, searchQuery) != NULL)
+        {
+            printf("Found: %s", line);
             found = 1;
             break;
         }
     }
 
-    if (!found) {
-        printf("No student found with ID: %s\n", searchID);
+    if (!found)
+    {
+        printf("No matching laptop found.\n");
     }
 
-    fclose(file);
+    fclose(ftpr);
 }
 
-void searchLaptop() {
-    FILE *file = fopen("laptops.txt", "r");
-    if (file == NULL) {
-        printf("Error: Could not open laptop records.\n");
+void searchStudent()
+{
+    char line[100];
+    char searchQuery[50];
+    int found = 0;
+
+    printf("Enter student ID or Name to search: ");
+    scanf("%s", searchQuery);
+
+    FILE *ftpr = fopen("students.txt", "r");
+
+    if (ftpr == NULL)
+    {
+        printf("ERROR: Cannot open file.\n");
         return;
     }
 
-    char searchID[20];
-    Laptop laptop;
-    int found = 0;
+    printf("\n--- Searching for Student ---\n");
 
-    printf("\n--- Search Laptop ---\n");
-    printf("Enter Laptop ID to search: ");
-    scanf("%s", searchID);
-
-    while (fscanf(file, "%s %s %s %d", laptop.laptopID, laptop.brand, laptop.specs, &laptop.isAvailable) != EOF) {
-        if (strcmp(laptop.laptopID, searchID) == 0) {
-            printf("\nLaptop Found:\n");
-            printf("ID: %s\nBrand: %s\nSpecs: %s\nAvailability: %s\n",
-                   laptop.laptopID, laptop.brand, laptop.specs, laptop.isAvailable ? "Available" : "Not Available");
+    // Read each line
+    while (fgets(line, sizeof(line), ftpr) != NULL)
+    {
+        if (strstr(line, searchQuery) != NULL)
+        {
+            printf("Found: %s", line);
             found = 1;
             break;
         }
     }
 
-    if (!found) {
-        printf("No laptop found with ID: %s\n", searchID);
+    if (!found)
+    {
+        printf("No matching student found.\n");
     }
 
-    fclose(file);
+    fclose(ftpr);
 }
