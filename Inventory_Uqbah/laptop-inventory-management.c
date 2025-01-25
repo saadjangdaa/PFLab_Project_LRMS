@@ -6,7 +6,7 @@
 // #include "functions.h"
 
 // // functions initialization
-void keyTrackersa();
+void keyTracker();
 void addLaptop();
 void displayLaptop();
 // void updateLaptopStatus();
