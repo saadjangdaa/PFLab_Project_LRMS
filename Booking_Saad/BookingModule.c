@@ -54,12 +54,12 @@ void bookLaptop(int studentID, int laptopID, int status)
     if (isBooked)
     {
         printf("Laptop ID: %d is already booked.\n", laptopID);
-        saveRentalDetails(1, 12, 48, 2, 200);
     }
     else
     {
         fprintf(fptr, "Student ID: %d, Laptop ID: %d, Status: %d\n", studentID, laptopID, status);
         printf("Booking successful! Student ID: %d, Laptop ID: %d.\n", studentID, laptopID);
+        saveRentalDetails(1, 12, 48, 2, 200);
         fclose(fptr);
     }
 
