@@ -1,1 +1,2 @@
-Student ID: 1, Laptop ID: 12 ,RentalDurationHours: 30, RentalCharge: 3000
+Student ID: 1, Laptop ID: 12 ,RentalDurationHours: 48, RentalCharge: 200
+Student ID: 1, Laptop ID: 12 ,RentalDurationHours: 48, RentalCharge: 200

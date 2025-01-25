@@ -1,1 +1,8 @@
-Student ID: 1, Laptop ID: 12
+Student ID: 1, Laptop ID: 0 , Status: 1 
+Student ID: 1, Laptop ID: 0 , Status: 1 
+Student ID: 1, Laptop ID: 0 , Status: 1 
+Student ID: 1, Laptop ID: 0 , Status: 1 
+Student ID: 1, Laptop ID: 0 , Status: 1 
+Student ID: 1, Laptop ID: 0 , Status: 1
+
+Student ID: 1, Laptop ID: 12, Status: 1
