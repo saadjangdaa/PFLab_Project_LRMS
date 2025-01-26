@@ -111,10 +111,30 @@ void searchLaptop()
 
     printf("\n--- Searching for Laptop ---\n");
 
-    // Read each line
+    // Read each line from the file
     while (fgets(line, sizeof(line), ftpr) != NULL)
     {
-        if (strstr(line, searchQuery) != NULL)
+        int i = 0, j = 0, matchFound = 0;
+
+        while (line[i] != '\0' && line[i] != '\n')
+        {
+            if (line[i] == searchQuery[j])
+            {
+                j++;
+                if (searchQuery[j] == '\0') // Full match of searchQuery
+                {
+                    matchFound = 1;
+                    break;
+                }
+            }
+            else
+            {
+                j = 0;
+            }
+            i++;
+        }
+
+        if (matchFound)
         {
             printf("Found: %s", line);
             found = 1;
@@ -152,7 +172,27 @@ void searchStudent()
     // Read each line
     while (fgets(line, sizeof(line), ftpr) != NULL)
     {
-        if (strstr(line, searchQuery) != NULL)
+        int i = 0, j = 0, matchFound = 0;
+
+        while (line[i] != '\0' && line[i] != '\n')
+        {
+            if (line[i] == searchQuery[j])
+            {
+                j++;
+                if (searchQuery[j] == '\0') // Full match found
+                {
+                    matchFound = 1;
+                    break;
+                }
+            }
+            else
+            {
+                j = 0;
+            }
+            i++;
+        }
+
+        if (matchFound)
         {
             printf("Found: %s", line);
             found = 1;
