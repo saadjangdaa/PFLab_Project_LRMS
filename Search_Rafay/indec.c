@@ -60,10 +60,10 @@ int main()
         {
             switch (userchoice)
             {
-            case 1:
+            case 2:
                 searchLaptop();
                 break;
-            case 2:
+            case 3:
                 printf("Exit\n");
                 return 0;
             default:

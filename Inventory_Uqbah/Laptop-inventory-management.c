@@ -32,7 +32,7 @@ void keyTracker(int id_position){
     } else if (key == 2){
         displayLaptop(id_position);
     } else if (key == 3){
-        updateLaptopStatus("002",id_position);
+        updateLaptopStatus(id,id_position);
     } else if (key == 4){
         return;
     }
@@ -69,7 +69,7 @@ void addLaptop(int id_position){
 
     printf("Enter laptop specifications: ");
     gets(laptop_specs);
-    fprintf(fptr, "Laptop ID:\t%s\t,\tBrand:\t%s\t,\tModel:\t%s\t,\tProcessor:\t%s\t,\tSpecs:\t%s\n",laptop_id, laptop_brand, laptop_model, laptop_processor, laptop_specs);
+    fprintf(fptr, "Laptop ID:\t%s\tBrand:\t%s\tModel:\t%s\tProcessor:\t%s\tSpecs:\t%s\n",laptop_id, laptop_brand, laptop_model, laptop_processor, laptop_specs);
     // fflush(stdin);
 
 
