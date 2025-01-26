@@ -32,7 +32,7 @@ void keyTracker(int id_position){
     } else if (key == 2){
         displayLaptop(id_position);
     } else if (key == 3){
-        updateLaptopStatus("001",id_position);
+        updateLaptopStatus(id,id_position);
     } else if (key == 4){
         return;
     }
