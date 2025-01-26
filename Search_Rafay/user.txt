@@ -1,0 +1,7 @@
+<<<<<<< HEAD
+Username: admin Password: admin123 Role: admin
+Username: user1 Password: pass1 Role: user
+Username: user2 Password: pass2 Role: user
+=======
+Username: saad Password: 1234
+>>>>>>> d39863ecf8a724b58af3c77695ba6905d72ca068

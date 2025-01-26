@@ -7,22 +7,42 @@ void searchLaptop();
 
 int main()
 {
-    int choice;
+    int userchoice;
+    char role[10];
 
-    if (!login()) {
+    if (!login(role))
+    {
         printf("Login failed. Exiting program.\n");
         return 0;
     }
 
-    while (1) {
-        printf("\n--- Menu ---\n");
-        printf("1. Search Student\n");
-        printf("2. Search Laptop\n");
-        printf("3. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+    while (1)
+    {
 
-        switch (choice) {
+        printf("\n--- Menu ---\n");
+        if (strcmp(role, "admin") == 0)
+        {
+            printf("1. search student\n");
+            printf("2. search laptop\n");
+            printf("3. Exit\n");
+        }
+        else if (strcmp(role, "user") == 0)
+        {
+            printf("2. search laptop\n");
+            printf("3. Exit\n");
+        }
+        else
+        {
+            printf("invalid role");
+            return 0;
+        }
+        printf("enter your choice: ");
+        scanf("%d", &userchoice);
+        if (strcmp(role, "admin") == 0)
+        {
+
+            switch (userchoice)
+            {
             case 1:
                 searchStudent();
                 break;
@@ -30,20 +50,32 @@ int main()
                 searchLaptop();
                 break;
             case 3:
-                printf("Exit. Goodbye!\n");
+                printf("Exit\n");
                 return 0;
             default:
-                printf("Invalid choice.\n");
+                printf("Wrong choice.\n");
+            }
+        }
+        else if (strcmp(role, "user") == 0)
+        {
+            switch (userchoice)
+            {
+            case 1:
+                searchLaptop();
+                break;
+            case 2:
+                printf("Exit\n");
+                return 0;
+            default:
+                printf("Wrong choice.\n");
+            }
         }
     }
 
     return 0;
 }
 
-#include <stdio.h>
-#include <string.h>
-
-int login()
+int login(char *role)
 {
     char line[100];
     char inputUsername[50], inputPassword[50];
@@ -58,7 +90,7 @@ int login()
 
     if (ftpr == NULL)
     {
-        printf("ERROR: Cannot open file.\n");
+        printf("Cannot open file.\n");
         return 0;
     }
 
@@ -67,15 +99,14 @@ int login()
     // Read each line
     while (fgets(line, sizeof(line), ftpr) != NULL)
     {
-        char fileUsername[50], filePassword[50];
+        char fileUsername[50], filePassword[50], fileRole[10];
 
-        if (sscanf(line, "Username: %s Password: %s", fileUsername, filePassword) == 2)
+       if (sscanf(line, "Username: %s Password: %s Role: %s", fileUsername, filePassword, fileRole) == 3)
         {
-            printf("Parsed Username: %s, Parsed Password: %s\n", fileUsername, filePassword);
-
             if (strcmp(inputUsername, fileUsername) == 0 && strcmp(inputPassword, filePassword) == 0)
             {
-                printf("Login successful!\n");
+               printf("Login successful. Role: %s\n", fileRole);
+               strcpy(role, fileRole);
                 loginSuccess = 1;
                 break;
             }
@@ -88,7 +119,7 @@ int login()
     }
 
     fclose(ftpr);
-    return 0;
+    return loginSuccess;
 }
 
 void searchLaptop()
@@ -105,7 +136,7 @@ void searchLaptop()
 
     if (ftpr == NULL)
     {
-        printf("ERROR: Cannot open file.\n");
+        printf("Cannot open file.\n");
         return;
     }
 
@@ -144,7 +175,7 @@ void searchLaptop()
 
     if (!found)
     {
-        printf("No matching laptop found.\n");
+        printf("No laptop found.\n");
     }
 
     fclose(ftpr);
@@ -163,7 +194,7 @@ void searchStudent()
 
     if (ftpr == NULL)
     {
-        printf("ERROR: Cannot open file.\n");
+        printf("Cannot open file.\n");
         return;
     }
 
@@ -179,7 +210,7 @@ void searchStudent()
             if (line[i] == searchQuery[j])
             {
                 j++;
-                if (searchQuery[j] == '\0') // Full match found
+                if (searchQuery[j] == '\0')
                 {
                     matchFound = 1;
                     break;
@@ -202,7 +233,7 @@ void searchStudent()
 
     if (!found)
     {
-        printf("No matching student found.\n");
+        printf("No student found.\n");
     }
 
     fclose(ftpr);
