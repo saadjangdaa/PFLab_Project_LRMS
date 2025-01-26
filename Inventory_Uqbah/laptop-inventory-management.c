@@ -31,15 +31,44 @@ void keyTracker(){
 }
 
 void addLaptop(){
-    FILE *fptr = fopen("Laptop-Data.txt", "a");
-    char input = 0;
     fflush(stdin);
-    printf("Enter the laptop data: ");  
-    while ((input = getchar())!= '\n'){
-        putc(input, fptr);
-    }
-    fprintf(fptr, "\n\n");
+    FILE *fptr = fopen("Laptop-Data.txt", "a");
+    char laptop_id[10];
+    char laptop_brand[10];
+    char laptop_model[50];
+    char laptop_processor[50];
+    char laptop_specs[200];
+
+    printf("Enter laptop id: ");
+    gets(laptop_id);
+    // fprintf(fptr, "Laptop ID: %s,   ", laptop_id);
+    // fflush(stdin);
+
+    printf("Enter Laptop Brand: ");
+    gets(laptop_brand);
+    // fprintf(fptr, "Laptop Brand: %s,   ", laptop_brand);
+    // fflush(stdin);
+
+    printf("Enter laptop Model: ");
+    gets(laptop_model);
+    // fprintf(fptr, "Laptop Model: %s,   ", laptop_model);
+    // fflush(stdin);
+
+    printf("Enter laptop Processor: ");
+    gets(laptop_processor);
+    // fprintf(fptr, "Laptop Processor: %s,   ", laptop_processor);
+    // fflush(stdin);
+
+    printf("Enter laptop specifications: ");
+    gets(laptop_specs);
+    fprintf(fptr, "Laptop ID: %s,   Brand: %s,  Model: %s,  Processor: %s,  Specs: %s\n\n",laptop_id, laptop_brand, laptop_model, laptop_processor, laptop_specs);
+    // fflush(stdin);
+
+
     fclose(fptr);
+    printf("File Updated Successfully!\n\n");
+    printf("What do you want to do next?\n");
+    keyTracker();
 }   
 void displayLaptop(){
     char read;
@@ -52,4 +81,6 @@ void displayLaptop(){
         }
     }
     fclose(fptr);
+    printf("File Read Successfully!\n\n");
+    keyTracker();
 }
