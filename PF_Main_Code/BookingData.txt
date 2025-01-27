@@ -1,3 +1,7 @@
-Student ID: 12, Laptop ID: 12, Status: 0
-Student ID: 1, Laptop ID: 1, Status: 1
-Student ID: 1, Laptop ID: 2, Status: 0
+Student ID: 1, Laptop ID: 0 , Status: 0
+Student ID: 2, Laptop ID: 2 , Status: 0
+Student ID: 3, Laptop ID: 11 , Status: 1
+Student ID: 4, Laptop ID: 21 , Status: 0
+Student ID: 5, Laptop ID: 10 , Status: 0
+Student ID: 6, Laptop ID: 17 , Status: 1
+Student ID: 7, Laptop ID: 12, Status: 1
