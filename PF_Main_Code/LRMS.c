@@ -5,7 +5,9 @@
 
 #define FILE_NAME "StudentData.txt"
 #define USER_FILE "user.txt"
+#define line_length 300
 
+void displayBookings();
 bool login(int *role);
 void adminMenu();
 void studentMenu();
@@ -108,7 +110,8 @@ void adminMenu() {
         printf("1. Register Student\n");
         printf("2. Display Students\n");
         printf("3. Search Student\n");
-        printf("4. Logout\n");
+        printf("4. Dispaly Bookings\n");
+        printf("5. Logout\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -123,6 +126,10 @@ void adminMenu() {
                 searchStudent();
                 break;
             case 4:
+                displayBookings();
+                break;
+                
+            case 5:
                 printf("Logging out. good bye\n");
                 return;
             default:
@@ -398,6 +405,8 @@ void displayLaptop(int id_position) {
 
 // Function to update laptop status
 void updateLaptopStatus(int laptopID, int newStatus) {
+
+
     FILE *fptr = fopen("Laptop-Data.txt", "r");
     FILE *tempFile = fopen("TempLaptopData.txt", "w");
     if (fptr == NULL || tempFile == NULL) {
@@ -432,4 +441,47 @@ void updateLaptopStatus(int laptopID, int newStatus) {
         printf("Laptop status updated for Laptop ID: %d\n", laptopID);
     else
         printf("Laptop ID: %d not found.\n", laptopID);
+}
+
+
+
+void displayBookings(int id_position)
+{
+    remove("ShowBookings.txt");
+    char read;
+    FILE *fptr = fopen("BookingData.txt", "r");
+    FILE *temp_file = fopen("showBookings.txt", "w");
+    printf("******Reading File******\n\n");
+
+    if (fptr == NULL)
+    {
+        printf("File does not exist\n");
+        return;
+    }
+
+    char line[line_length];
+
+    while (fgets(line, sizeof(line), fptr))
+    {
+        int student_ID;
+        int laptop_id;
+        int status;
+        sscanf(line, "Student ID: %d, Laptop ID: %d , Status: %d", &student_ID, &laptop_id, &status);
+        if (status == 1)
+        {
+            fprintf(temp_file, "Student ID: %d, Laptop ID: %d , Status: Not-Available\n", student_ID, laptop_id, status);
+        }
+        else
+        {
+            fprintf(temp_file, "Student ID: %d, Laptop ID: %d , Status: Available\n", student_ID, laptop_id, status);
+        }
+    }
+    fclose(fptr);
+    fclose(temp_file);
+    FILE *readBookings = fopen("showBookings.txt","r");
+    while ((read = getc(readBookings))!=EOF){
+        printf("%c", read);
+    }
+    fclose(readBookings);
+ 
 }

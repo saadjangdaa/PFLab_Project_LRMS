@@ -5,3 +5,5 @@ Student ID: 4, Laptop ID: 21 , Status: Available
 Student ID: 5, Laptop ID: 10 , Status: Available
 Student ID: 6, Laptop ID: 17 , Status: Not-Available
 Student ID: 7, Laptop ID: 12 , Status: Not-Available
+Student ID: 1, Laptop ID: 9 , Status: Not-Available
+Student ID: 1, Laptop ID: 3 , Status: Available

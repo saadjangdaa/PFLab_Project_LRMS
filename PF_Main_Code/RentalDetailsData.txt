@@ -5,3 +5,5 @@ Student ID: 12, Laptop ID: 1, Rental Duration: 48 hours, Rental Charge: 200
 Student ID: 1, Laptop ID: 12, Rental Duration: 48 hours, Rental Charge: 200
 Student ID: 1, Laptop ID: 12, Rental Duration: 48 hours, Rental Charge: 200
 Student ID: 1, Laptop ID: 2, Rental Duration: 48 hours, Rental Charge: 200
+Student ID: 1, Laptop ID: 9, Rental Duration: 48 hours, Rental Charge: 200
+Student ID: 1, Laptop ID: 3, Rental Duration: 48 hours, Rental Charge: 200
