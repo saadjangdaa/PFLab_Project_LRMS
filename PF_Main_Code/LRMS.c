@@ -6,7 +6,6 @@
 #define FILE_NAME "StudentData.txt"
 #define USER_FILE "user.txt"
 
-// Function Declarations
 bool login(int *role);
 void adminMenu();
 void studentMenu();
@@ -25,11 +24,11 @@ void updateLaptopStatus(int laptopID, int newStatus);
 
 // Main Function
 int main() {
-    int role; // Role: 0 for admin, 1 for student
+    int role; 
     int choice;
 
     while (1) {
-        printf("\n--- Welcome to the System ---\n");
+        printf("\n--- Welcome to the Laptop Rental Management System ---\n");
         printf("1. Login\n");
         printf("2. Signup\n");
         printf("3. Exit\n");
@@ -45,14 +44,14 @@ int main() {
                         studentMenu();
                     }
                 } else {
-                    printf("Login failed. Please try again.\n");
+                    printf("login failed.  try again.\n");
                 }
                 break;
             case 2:
                 signup();
                 break;
             case 3:
-                printf("Exiting the program. Goodbye!\n");
+                printf("exiting  program. Good bye\n");
                 return 0;
             default:
                 printf("Invalid choice. Please try again.\n");
@@ -68,14 +67,14 @@ bool login(int *role) {
     bool loginSuccess = false;
 
     printf("\n--- Login ---\n");
-    printf("Enter username: ");
+    printf("enter user name: ");
     scanf("%s", inputUsername);
-    printf("Enter password: ");
+    printf("enter password: ");
     scanf("%s", inputPassword);
 
     FILE *file = fopen(USER_FILE, "r");
     if (file == NULL) {
-        printf("No user data found! Please signup first.\n");
+        printf("No user found! please signup first.\n");
         return false;
     }
 
@@ -124,10 +123,10 @@ void adminMenu() {
                 searchStudent();
                 break;
             case 4:
-                printf("Logging out. Goodbye!\n");
+                printf("Logging out. good bye\n");
                 return;
             default:
-                printf("Invalid choice. Please try again.\n");
+                printf("Invalid choice.  try again.\n");
         }
     }
 }
@@ -164,7 +163,8 @@ void studentMenu() {
                 displayLaptop(studentID);
                 break;
             case 4:
-                printf("Logging out. Goodbye!\n");
+                                printf("Logging out. good bye\n");
+
                 return;
             default:
                 printf("Invalid choice.\n");
@@ -284,7 +284,6 @@ void searchStudent() {
 }
 
 // Register Student
-// Register Student
 void registerStudent() {
     FILE *file = fopen(FILE_NAME, "a");
     if (file == NULL) {
@@ -293,18 +292,17 @@ void registerStudent() {
     }
 
     char name[50];
-    char password[50], rollNo[50];  // Using string types for rollNo and password
+    char password[50], rollNo[50];  
 
     printf("Enter name: ");
-    scanf("%s", name);  // Read student name as a string
+    scanf("%s", name); 
 
     printf("Enter roll number: ");
-    scanf("%s", rollNo);  // Read roll number as a string (if it can contain alphanumeric values)
+    scanf("%s", rollNo);  
 
     printf("Enter password: ");
-    scanf("%s", password);  // Read password as a string
+    scanf("%s", password);  
 
-    // Save student data to the file, assuming rollNo and password are alphanumeric
     fprintf(file, "%s,%s,%s\n", name, rollNo, password);
     fclose(file);
     printf("Student registered successfully!\n");
@@ -330,8 +328,6 @@ void displayStudents() {
     fclose(file);
 }
 
-// Function Definitions for the other functions (keyTracker, addLaptop, etc.) would be added as needed.
-
 // Signup Function
 void signup() {
     char username[50], password[50];
@@ -342,16 +338,12 @@ void signup() {
     printf("Enter a password: ");
     scanf("%s", password);
 
-    FILE *file = fopen(USER_FILE, "a"); // Open the file in append mode
-    if (file == NULL) {
-        printf("Error opening user file!\n");
-        return;
-    }
+    FILE *file = fopen(USER_FILE, "a"); 
 
     fprintf(file, "Username: %s Password: %s Role: 1\n", username, password);
     fclose(file);
 
-    printf("Signup successful! You can now login.\n");
+    printf("Signup successful You can now login.\n");
 }
 
 
@@ -375,7 +367,7 @@ void addLaptop(int id_position) {
     int laptop_status;
 
     printf("Enter Laptop ID: ");
-    scanf("%s", laptop_id);  // Restrict size if needed
+    scanf("%s", laptop_id); 
     printf("Enter Laptop Brand: ");
     scanf("%s", laptop_brand);
     printf("Enter Laptop Status (0 for available, 1 for booked): ");
@@ -418,17 +410,14 @@ void updateLaptopStatus(int laptopID, int newStatus) {
     int fileLaptopID, fileStatus;
     int found = 0;
 
-    // Read each line from the original file and update the status if necessary
     while (fgets(line, sizeof(line), fptr)) {
         sscanf(line, "Laptop ID: %s, Brand: %s, Status: %d", laptop_id, laptop_brand, &fileStatus);
-        fileLaptopID = atoi(laptop_id); // Convert the ID to integer for comparison
+        fileLaptopID = atoi(laptop_id);
         
         if (fileLaptopID == laptopID) {
-            // Update the status if the laptop is found
             fprintf(tempFile, "Laptop ID: %s, Brand: %s, Status: %d\n", laptop_id, laptop_brand, newStatus);
             found = 1;
         } else {
-            // Otherwise, copy the line as is
             fprintf(tempFile, "%s", line);
         }
     }
@@ -436,7 +425,6 @@ void updateLaptopStatus(int laptopID, int newStatus) {
     fclose(fptr);
     fclose(tempFile);
 
-    // Replace the original file with the updated one
     remove("Laptop-Data.txt");
     rename("TempLaptopData.txt", "Laptop-Data.txt");
 
