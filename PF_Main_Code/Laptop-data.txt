@@ -1,0 +1,3 @@
+Laptop ID:	001	,	Brand:	Dell	,	Model:	Latitude-3410	,	Processor:	i5-10th Gen	,	Specs:	8gb-256gb
+Laptop ID:	002	,	Brand:	Dell	,	Model:	Latitude-3410	,	Processor:	i5-10th Gen	,	Specs:	8gb-256gb
+Laptop ID:	003	,	Brand:	Dell	,	Model:	Latitude-3410	,	Processor:	i5-10th Gen	,	Specs:	8gb-256gb

@@ -1,0 +1,4 @@
+Username: admin Password: admin123 Role: 0
+Username: user1 Password: pass1 Role: 1
+Username: user2 Password: pass2 Role: 1Username: saadkhan Password: 1234 Role: 1
+Username: saadkhan Password: 1234 Role: 1
